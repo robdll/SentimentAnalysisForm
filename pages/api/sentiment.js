@@ -15,8 +15,10 @@ export default async function handler(req, res) {
         }
       );
 
-      const label = response.data[0].label;
-      res.status(200).json({ sentiment: label });
+      const sentimentData = response.data[0][0]; // Access the first object in the nested array
+      const label = sentimentData.label;
+      const score = sentimentData.score;
+      res.status(200).json({ sentiment: label, confidence: score });
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch sentiment' });
     }
