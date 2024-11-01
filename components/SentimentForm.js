@@ -2,12 +2,16 @@
 import { useState } from 'react';
 import styles from "@/styles/Card.module.css";
 
+import ColoredCard from './ColoredCard';
+
 const SentimentForm = () => {
   const [text, setText] = useState('');
   const [sentiment, setSentiment] = useState('');
   const [confidence, setConfidence] = useState(null);
 
   const handleSubmit = async (e) => {
+    setSentiment(null);
+    setConfidence(null);
     e.preventDefault();
     const response = await fetch('/api/sentiment', {
       method: 'POST',
@@ -17,8 +21,9 @@ const SentimentForm = () => {
       body: JSON.stringify({ text }),
     });
     const data = await response.json();
+    console.log('data', data);
     setSentiment(data.sentiment);
-    setConfidence(data.confidence);
+    setConfidence((data.confidence * 100).toFixed(2));
   };
 
   return (
@@ -32,9 +37,8 @@ const SentimentForm = () => {
           required />
         <label>Enter text to analyze sentiment</label>
       </div>
-      <button onSubmit={handleSubmit}>Analyze Sentiment</button>
-      {sentiment && <p>Sentiment: {sentiment}</p>}
-      {confidence && <p>Confidence: {(confidence * 100).toFixed(2)}%</p>}
+      <button onClick={handleSubmit}>Analyze Sentiment</button>
+      {sentiment && (<ColoredCard sentiment={sentiment} confidence={confidence} />)}
     </div>
   );
 };

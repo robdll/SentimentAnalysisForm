@@ -59,7 +59,7 @@
   transform: translateY(-120%);
 }
 
-.card button {
+.card button, .sentiment {
   font-size: 1rem;
   align-self: flex-end;
   color: #E1E1E1;
@@ -77,4 +77,37 @@
 
 .card button:hover {
   background: hsla(0, 0%, 100%, .3);
+}
+
+.sentiment {
+  align-self: flex-start;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.sentiment.positive {
+  border-color: rgb(121, 227, 121); 
+}
+
+span.positive {
+  color: rgb(121, 227, 121);;
+}
+
+.sentiment.negative {
+  border-color: rgb(242, 69, 69); 
+}
+
+span.negative {
+  color: rgb(242, 69, 69);
+}
+
+.sentiment.neutral {
+  border-color: #f7f14e; 
+}
+
+span.neutral {
+  color: #f7f14e;
 }
