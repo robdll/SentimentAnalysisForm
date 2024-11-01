@@ -10,7 +10,7 @@ body {
 
 body {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   background-image: linear-gradient(to bottom right, #fc0345,#fc03b1,#4a03fc);
   min-height: 100vh;
